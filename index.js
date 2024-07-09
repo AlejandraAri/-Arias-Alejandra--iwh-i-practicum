@@ -7,7 +7,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const PRIVATE_APP_ACCESS = 'pat-na1-bfc27286-d994-48ff-b197-04e636341953';  // Reemplaza con tu token de acceso privado
+const PRIVATE_APP_ACCESS = '';  // Reemplaza con tu token de acceso privado
 
 // Ruta GET para la página de inicio ("/")
 app.get('/', async (req, res) => {
