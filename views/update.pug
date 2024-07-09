@@ -1,13 +1,24 @@
 doctype html
-html(lang="en")
+html
     head
-        title update contact info 
+        title= title
+        meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel="stylesheet", href="/css/style.css")
-    body 
-        .form-wrappeer 
-            p User : #{useEmail}
-            p Favorite Music : #{favoriteMusic}
-            form(method ="POST") 
-                label(for="newVal") New favorite music 
-                input(type="text" name="newVal" required)
-                input(type="submit" value= "Submit")
+    body
+        h1 Formulario de actualización de objeto personalizado
+        form(action="/update-cobj" method="post")
+            div
+                label(for="email") Email
+                input(type="text" name="email" required)
+            div
+                label(for="firstname") firstname
+                input(type="text" name="firstname" required)
+            div
+                label(for="lastname") lastname
+                input(type="text" name="lastname" required)
+            div
+                label(for="city") city
+                input(type="text" name="city" required)
+            div
+            button(type="submit") Submit
+        a(href='/') Regresar a la página de inicio
