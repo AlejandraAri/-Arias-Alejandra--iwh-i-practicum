@@ -37,7 +37,7 @@ app.post('/update-cobj', async (req, res) => {
         properties: {
             email: req.body.email,
             firstname: req.body.firstname,
-            lastname: req.body.lastname
+            lastname: req.body.lastname,
             city: req.body.city
         }
     };
