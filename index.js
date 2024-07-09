@@ -7,7 +7,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const PRIVATE_APP_ACCESS = '';  // Reemplaza con tu token de acceso privado
+const PRIVATE_APP_ACCESS = '';  
 
 // Ruta GET para la página de inicio ("/")
 app.get('/', async (req, res) => {
