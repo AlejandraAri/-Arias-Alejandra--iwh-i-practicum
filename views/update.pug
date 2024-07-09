@@ -1,0 +1,13 @@
+doctype html
+html(lang="en")
+    head
+        title update contact info 
+        link(rel="stylesheet", href="/css/style.css")
+    body 
+        .form-wrappeer 
+            p User : #{useEmail}
+            p Favorite Music : #{favoriteMusic}
+            form(method ="POST") 
+                label(for="newVal") New favorite music 
+                input(type="text" name="newVal" required)
+                input(type="submit" value= "Submit")
