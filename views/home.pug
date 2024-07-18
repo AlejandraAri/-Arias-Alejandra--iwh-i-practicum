@@ -10,14 +10,14 @@ html
         table
             thead
                 tr
-                    th Email
-                    th firstname
-                    th lastname
-                    th city
+                    th nombre del proyecto
+                    th tipo de proyecto
+                    th gerente del proyecto
+                    
             tbody
                 each item in data
                     tr
-                        td= item.properties.email
-                        td= item.properties.firstname
-                        td= item.properties.lastname
-                        td= item.properties.city
+                        td= item.properties.nombre_del_proyecto
+                        td= item.properties.tipo_de_proyecto
+                        td= item.properties.gerente_del_proyecto
+                        

@@ -7,11 +7,11 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const PRIVATE_APP_ACCESS = '';  
+const PRIVATE_APP_ACCESS = 'pat-na1-bfc27286-d994-48ff-b197-04e636341953';
 
 // Ruta GET para la página de inicio ("/")
 app.get('/', async (req, res) => {
-    const customObjectsUrl = 'https://api.hubapi.com/crm/v3/objects/contacts?properties=email,firstname,lastname,city'; // Reemplaza con el endpoint para contactos y propiedades específicas
+    const customObjectsUrl = 'https://api.hubapi.com/crm/v3/objects/2-32325333?properties=nombre_del_proyecto,tipo_de_proyecto,gerente_del_proyecto';
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
@@ -35,10 +35,9 @@ app.get('/update-cobj', (req, res) => {
 app.post('/update-cobj', async (req, res) => {
     const customObjectData = {
         properties: {
-            email: req.body.email,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            city: req.body.city
+            nombre_del_proyecto: req.body.nombre_del_proyecto,
+            tipo_de_proyecto: req.body.tipo_de_proyecto,
+            gerente_del_proyecto: req.body.gerente_del_proyecto
         }
     };
 
@@ -47,14 +46,14 @@ app.post('/update-cobj', async (req, res) => {
         'Content-Type': 'application/json'
     };
 
-    // Buscar el contacto por email para obtener su ID
-    const searchUrl = `https://api.hubapi.com/crm/v3/objects/contacts/search`;
+    // Buscar el objeto personalizado por nombre del proyecto para obtener su ID
+    const searchUrl = 'https://api.hubapi.com/crm/v3/objects/2-32325333/search';
     const searchData = {
         filterGroups: [{
             filters: [{
-                propertyName: 'email',
+                propertyName: 'nombre_del_proyecto',
                 operator: 'EQ',
-                value: req.body.email
+                value: req.body.nombre_del_proyecto
             }]
         }]
     };
@@ -62,13 +61,13 @@ app.post('/update-cobj', async (req, res) => {
     try {
         const searchResponse = await axios.post(searchUrl, searchData, { headers });
         if (searchResponse.data.results.length > 0) {
-            // Contacto existente encontrado, actualizar
-            const contactId = searchResponse.data.results[0].id;
-            const updateUrl = `https://api.hubapi.com/crm/v3/objects/contacts/${contactId}`;
+            // Objeto personalizado existente encontrado, actualizar
+            const objectId = searchResponse.data.results[0].id;
+            const updateUrl = `https://api.hubapi.com/crm/v3/objects/2-32325333/${objectId}`;
             await axios.patch(updateUrl, customObjectData, { headers });
         } else {
-            // No se encontró contacto, crear uno nuevo
-            const createUrl = 'https://api.hubapi.com/crm/v3/objects/contacts';
+            // No se encontró objeto personalizado, crear uno nuevo
+            const createUrl = 'https://api.hubapi.com/crm/v3/objects/2-32325333';
             await axios.post(createUrl, customObjectData, { headers });
         }
         res.redirect('/');

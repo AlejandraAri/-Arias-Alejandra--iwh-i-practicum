@@ -8,17 +8,14 @@ html
         h1 Formulario de actualización de objeto HubSpot 
         form(action="/update-cobj" method="post")
             div
-                label(for="email") Email
-                input(type="text" name="email" required)
+                label(for="nombre_del_proyecto") nombre_del_proyecto
+                input(type="text" name="nombre_del_proyecto" required)
             div
-                label(for="firstname") firstname
-                input(type="text" name="firstname" required)
+                label(for="tipo_de_proyecto") tipo_de_proyecto
+                input(type="text" name="tipo_de_proyecto" required)
             div
-                label(for="lastname") lastname
-                input(type="text" name="lastname" required)
+                label(for="gerente_del_proyecto") gerente_del_proyecto
+                input(type="text" name="gerente_del_proyecto" required)
             div
-                label(for="city") city
-                input(type="text" name="city" required)
-            div
-            button(type="submit") Submit
+                button(type="submit") Submit
         a(href='/') Regresar a la página de inicio
